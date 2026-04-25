@@ -364,3 +364,293 @@
       <h1>Take the Financial Wellbeing Test</h1>
       <p>A short diagnostic for HR leaders, founders and business owners to assess whether financial pressure may be affecting their workforce.</p>
       <div class="hero-points">
+        <div class="hero-point">Takes around 3 minutes</div>
+        <div class="hero-point">Designed for SMEs and growing organisations</div>
+        <div class="hero-point">Provides a clear risk profile and next step</div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card">
+        <h2>Is financial pressure showing up in your business?</h2>
+        <p>Financial wellbeing is no longer only a personal issue. For many organisations, it can affect focus, confidence, engagement, retention and overall performance.</p>
+        <p>This diagnostic helps you take a high-level view of what may already be happening across your workforce, and whether a more structured response could be useful.</p>
+
+        <form id="wellbeingQuiz" class="quiz-form">
+          <fieldset class="question">
+            <legend>1. How confident are you that employees understand the benefits already available to them?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q1" value="0"> Very confident, benefits are well communicated and understood</label>
+              <label class="option"><input type="radio" name="q1" value="1"> Somewhat confident, but engagement could be better</label>
+              <label class="option"><input type="radio" name="q1" value="2"> Not confident, benefits are in place but not well understood</label>
+              <label class="option"><input type="radio" name="q1" value="3"> We do not currently have a clear benefits communication process</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question">
+            <legend>2. How visible is financial stress within your workforce?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q2" value="0"> Rarely visible</label>
+              <label class="option"><input type="radio" name="q2" value="1"> Occasionally visible through individual conversations</label>
+              <label class="option"><input type="radio" name="q2" value="2"> Increasingly visible through absence, distraction or requests for support</label>
+              <label class="option"><input type="radio" name="q2" value="3"> A regular concern for leadership, HR or line managers</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question">
+            <legend>3. How often do employees ask for help with pensions, savings, debt, protection or wider money matters?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q3" value="0"> Rarely</label>
+              <label class="option"><input type="radio" name="q3" value="1"> Occasionally</label>
+              <label class="option"><input type="radio" name="q3" value="2"> Frequently enough to suggest a wider need</label>
+              <label class="option"><input type="radio" name="q3" value="3"> We know there is demand, but do not have a clear route for support</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question">
+            <legend>4. When did you last review your workplace pension and employee benefits?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q4" value="0"> Within the last 12 months</label>
+              <label class="option"><input type="radio" name="q4" value="1"> Within the last 1 to 3 years</label>
+              <label class="option"><input type="radio" name="q4" value="2"> More than 3 years ago</label>
+              <label class="option"><input type="radio" name="q4" value="3"> We are not sure when they were last reviewed properly</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question">
+            <legend>5. How well does your current wellbeing approach connect with retention, engagement and performance?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q5" value="0"> Very well, it is part of our people strategy</label>
+              <label class="option"><input type="radio" name="q5" value="1"> Partly, but it could be more structured</label>
+              <label class="option"><input type="radio" name="q5" value="2"> Not clearly, it is more reactive than strategic</label>
+              <label class="option"><input type="radio" name="q5" value="3"> We do not currently have a joined-up approach</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question">
+            <legend>6. How easy would it be for your organisation to introduce practical financial wellbeing support?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q6" value="0"> Easy, we have resource and a clear route to communicate</label>
+              <label class="option"><input type="radio" name="q6" value="1"> Possible, but we would need guidance</label>
+              <label class="option"><input type="radio" name="q6" value="2"> Difficult, because time and internal capacity are limited</label>
+              <label class="option"><input type="radio" name="q6" value="3"> Very difficult without external support and coordination</label>
+            </div>
+          </fieldset>
+
+          <div id="errorMessage" class="error-message">Please answer all six questions before viewing your result.</div>
+
+          <div class="button-row">
+            <button type="button" class="btn btn-primary" onclick="calculateResult()">View my result</button>
+            <button type="reset" class="btn btn-secondary" onclick="resetResult()">Reset</button>
+          </div>
+        </form>
+
+        <section id="resultBox" class="result-box" aria-live="polite">
+          <div id="scorePill" class="score-pill"></div>
+          <h2 id="resultTitle" class="result-title"></h2>
+          <p id="resultText"></p>
+          <p id="resultAction"></p>
+
+          <div class="lead-form">
+            <h3>Walk through what this looks like in your organisation</h3>
+            <p>Aetas in the Workplace can help you review what is already in place, identify any gaps, and consider what a proportionate response could look like.</p>
+            <p class="small-note">No obligation. No preparation required. Designed to give you clarity.</p>
+
+            <form id="contactForm">
+              <div class="field-grid">
+                <div>
+                  <label class="field-label" for="name">Name</label>
+                  <input type="text" id="name" name="name" autocomplete="name" required />
+                </div>
+                <div>
+                  <label class="field-label" for="company">Company</label>
+                  <input type="text" id="company" name="company" autocomplete="organization" />
+                </div>
+                <div>
+                  <label class="field-label" for="email">Email</label>
+                  <input type="email" id="email" name="email" autocomplete="email" required />
+                </div>
+                <div>
+                  <label class="field-label" for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" />
+                </div>
+                <div class="full-width">
+                  <label class="field-label" for="message">Anything you would like to add?</label>
+                  <textarea id="message" name="message"></textarea>
+                </div>
+
+                <input type="hidden" id="quizScore" name="quiz_score" />
+                <input type="hidden" id="riskProfile" name="risk_profile" />
+              </div>
+
+              <div id="formSuccess" class="success-message">Thank you. Your result has been submitted successfully.</div>
+              <div id="formError" class="error-message">There was an issue submitting your form. Please try again.</div>
+
+              <div class="button-row">
+                <button id="submitButton" type="submit" class="btn btn-primary">Request a workplace financial wellbeing consultation</button>
+              </div>
+              <p class="small-note">By submitting your details, you are asking Aetas in the Workplace to contact you about your result.</p>
+            </form>
+          </div>
+        </section>
+      </div>
+
+      <aside class="card sidebar-card">
+        <h3>What this diagnostic is designed to reveal</h3>
+        <p>It gives leadership teams a simple way to understand whether employee financial pressure may be creating hidden organisational risk.</p>
+
+        <div class="stat-box">
+          <strong>The aim is clarity.</strong><br />
+          Not every organisation needs a complex programme, but most benefit from understanding whether current support is fit for purpose.
+        </div>
+
+        <h3>What happens next?</h3>
+        <ol class="process-list">
+          <li><div><strong>Complete the diagnostic</strong><br />Answer six high-level questions.</div></li>
+          <li><div><strong>Review your result</strong><br />Receive a clear workplace financial pressure profile.</div></li>
+          <li><div><strong>Explore the gaps</strong><br />Book a consultation to understand what this means in practice.</div></li>
+        </ol>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // IMPORTANT: Replace the URL below with your Go High Level inbound webhook URL.
+    const https://app.marketerm8.com/location/iYTxfP1HHyRKz2RL1tai/workflow/5b80e786-1e4f-4246-9cb3-d3d3d2f5f113
+
+    function calculateResult() {
+      const totalQuestions = 6;
+      let score = 0;
+      let answered = 0;
+
+      for (let i = 1; i <= totalQuestions; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected) {
+          score += Number(selected.value);
+          answered++;
+        }
+      }
+
+      const errorMessage = document.getElementById('errorMessage');
+      const resultBox = document.getElementById('resultBox');
+      const scorePill = document.getElementById('scorePill');
+      const resultTitle = document.getElementById('resultTitle');
+      const resultText = document.getElementById('resultText');
+      const resultAction = document.getElementById('resultAction');
+      const quizScore = document.getElementById('quizScore');
+      const riskProfile = document.getElementById('riskProfile');
+
+      if (answered < totalQuestions) {
+        errorMessage.classList.add('active');
+        resultBox.classList.remove('active');
+        return;
+      }
+
+      errorMessage.classList.remove('active');
+
+      let profile = '';
+      let title = '';
+      let text = '';
+      let action = '';
+
+      if (score <= 4) {
+        profile = 'Low current risk';
+        title = 'Low current financial wellbeing risk';
+        text = 'Your responses suggest that financial pressure is not currently creating a major visible issue across your organisation. The priority is likely to be maintaining communication, reviewing benefits regularly, and making sure employees know where to turn when they need support.';
+        action = 'A light-touch review may still be useful to confirm whether your current arrangements remain suitable as your organisation changes.';
+      } else if (score <= 8) {
+        profile = 'Emerging pressure';
+        title = 'Emerging financial pressure risk';
+        text = 'Your responses suggest early signs that employee financial pressure may be affecting understanding, engagement or confidence. This is often the stage where practical education, clearer communication and a simple benefits review can make a meaningful difference.';
+        action = 'A structured consultation can help identify the most relevant and proportionate next steps.';
+      } else if (score <= 13) {
+        profile = 'Material pressure';
+        title = 'Material financial wellbeing risk';
+        text = 'Your responses suggest that financial pressure may already be showing up across your workforce. This can affect focus, morale, retention and the value employees get from existing benefits.';
+        action = 'It would be sensible to review what is currently in place and consider a more joined-up approach to employee benefits and financial wellbeing support.';
+      } else {
+        profile = 'High organisational risk';
+        title = 'High workplace financial pressure risk';
+        text = 'Your responses suggest that financial pressure may be creating a clear organisational risk. This may be showing up through employee stress, poor benefits engagement, pressure on managers or a lack of confidence around financial decisions.';
+        action = 'A diagnostic consultation would help identify the key gaps and shape a practical plan that is proportionate for your organisation.';
+      }
+
+      scorePill.textContent = `Score: ${score} / 18 | ${profile}`;
+      resultTitle.textContent = title;
+      resultText.textContent = text;
+      resultAction.textContent = action;
+      quizScore.value = score;
+      riskProfile.value = profile;
+
+      resultBox.classList.add('active');
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function resetResult() {
+      document.getElementById('resultBox').classList.remove('active');
+      document.getElementById('errorMessage').classList.remove('active');
+      document.getElementById('formSuccess').classList.remove('active');
+      document.getElementById('formError').classList.remove('active');
+      document.getElementById('quizScore').value = '';
+      document.getElementById('riskProfile').value = '';
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const successMessage = document.getElementById('formSuccess');
+      const errorMessage = document.getElementById('formError');
+      const submitButton = document.getElementById('submitButton');
+
+      successMessage.classList.remove('active');
+      errorMessage.classList.remove('active');
+
+      if (!GHL_WEBHOOK_URL || GHL_WEBHOOK_URL === 'PASTE_YOUR_GHL_WEBHOOK_URL_HERE') {
+        errorMessage.textContent = 'Webhook URL has not been added yet.';
+        errorMessage.classList.add('active');
+        return;
+      }
+
+      const formData = {
+        name: document.getElementById('name').value,
+        company: document.getElementById('company').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        message: document.getElementById('message').value,
+        quiz_score: document.getElementById('quizScore').value,
+        risk_profile: document.getElementById('riskProfile').value,
+        source: 'Financial Wellbeing Test',
+        page_url: window.location.href,
+        submitted_at: new Date().toISOString()
+      };
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+
+      try {
+        const response = await fetch(GHL_WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        if (!response.ok) {
+          throw new Error('Webhook submission failed');
+        }
+
+        successMessage.textContent = 'Thank you. Your result has been submitted successfully.';
+        successMessage.classList.add('active');
+        document.getElementById('contactForm').reset();
+      } catch (error) {
+        errorMessage.textContent = 'There was an issue submitting your form. Please try again.';
+        errorMessage.classList.add('active');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Request a workplace financial wellbeing consultation';
+      }
+    });
+  </script>
+</body>
+</html>
