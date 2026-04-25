@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Take the Financial Wellbeing Test | Aetas in the Workplace</title>
+  <meta name="description" content="A short workplace financial wellbeing diagnostic for HR leaders, founders and business owners to assess whether financial pressure may be affecting their workforce." />
+
+  <style>
+    :root {
+      --aetas-navy: #17233f;
+      --aetas-blue: #2f5f9f;
+      --aetas-gold: #c7a45d;
+      --aetas-light: #f6f7f9;
+      --aetas-border: #d9dee8;
+      --aetas-text: #1f2933;
+      --aetas-muted: #5f6b7a;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Open Sans", Arial, sans-serif;
+      color: var(--aetas-text);
+      background: var(--aetas-light);
+      line-height: 1.6;
+    }
+
+    .page-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--aetas-navy), var(--aetas-blue));
+      color: var(--white);
+      border-radius: 22px;
+      padding: 46px 38px;
+      margin-bottom: 28px;
+      box-shadow: 0 18px 45px rgba(23, 35, 63, 0.18);
+    }
+
+    .eyebrow {
+      color: var(--aetas-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      margin: 0 0 18px;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.08;
+      max-width: 850px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 820px;
+      margin: 0 0 22px;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero-point {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 15px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--aetas-border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 12px 30px rgba(31, 41, 51, 0.06);
+    }
+
+    .card h2, .card h3 {
+      color: var(--aetas-navy);
+      margin-top: 0;
+      line-height: 1.25;
+    }
+
+    .intro-list {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .intro-list li {
+      margin-bottom: 8px;
+    }
+
+    .quiz-form {
+      margin-top: 12px;
+    }
+
+    .question {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--aetas-border);
+    }
+
+    .question:last-of-type {
+      border-bottom: none;
+    }
+
+    .question legend {
+      font-weight: 700;
+      color: var(--aetas-navy);
+      margin-bottom: 14px;
+      font-size: 17px;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--aetas-border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #fff;
+    }
+
+    .option:hover {
+      border-color: var(--aetas-blue);
+      background: #f9fbff;
+    }
+
+    .option input {
+      margin-top: 5px;
+      accent-color: var(--aetas-blue);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 26px;
+    }
+
+    .btn {
+      appearance: none;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s ease;
+      font-size: 15px;
+    }
+
+    .btn-primary {
+      background: var(--aetas-gold);
+      color: var(--aetas-navy);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(199, 164, 93, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--aetas-navy);
+      color: var(--white);
+    }
+
+    .btn-secondary:hover {
+      background: var(--aetas-blue);
+    }
+
+    .small-note {
+      color: var(--aetas-muted);
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    .result-box {
+      display: none;
+      margin-top: 28px;
+      padding: 26px;
+      border-radius: 18px;
+      border: 1px solid var(--aetas-border);
+      background: #fbfcff;
+    }
+
+    .result-box.active {
+      display: block;
+    }
+
+    .score-pill {
+      display: inline-block;
+      background: var(--aetas-navy);
+      color: var(--white);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .result-title {
+      color: var(--aetas-navy);
+      margin: 0 0 10px;
+      font-size: 25px;
+    }
+
+    .lead-form {
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid var(--aetas-border);
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    label.field-label {
+      display: block;
+      font-weight: 700;
+      color: var(--aetas-navy);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+      width: 100%;
+      border: 1px solid var(--aetas-border);
+      border-radius: 12px;
+      padding: 12px 13px;
+      font-family: inherit;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .sidebar-card {
+      position: sticky;
+      top: 22px;
+    }
+
+    .sidebar-card p {
+      color: var(--aetas-muted);
+    }
+
+    .stat-box {
+      border-left: 4px solid var(--aetas-gold);
+      padding: 14px 16px;
+      background: #fbfaf6;
+      border-radius: 12px;
+      margin: 18px 0;
+    }
+
+    .process-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      counter-reset: process;
+    }
+
+    .process-list li {
+      counter-increment: process;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .process-list li::before {
+      content: counter(process);
+      width: 34px;
+      height: 34px;
+      background: var(--aetas-navy);
+      color: var(--white);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .error-message {
+      display: none;
+      color: #9f1d20;
+      background: #fff1f1;
+      border: 1px solid #f2b6b8;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 16px;
+      font-weight: 700;
+    }
+
+    .error-message.active {
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .content-grid, .hero-points, .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 34px 24px;
+      }
+
+      .sidebar-card {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-wrap">
+    <section class="hero">
+      <div class="eyebrow">Aetas in the Workplace</div>
+      <h1>Take the Financial Wellbeing Test</h1>
+      <p>A short diagnostic for HR leaders, founders and business owners to assess whether financial pressure may be affecting their workforce.</p>
+      <div class="hero-points">
+        <div class="hero-point">Takes around 3 minutes</div>
+        <div class="hero-point">Designed for SMEs and growing organisations</div>
+        <div class="hero-point">Provides a clear risk profile and next step</div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card">
+        <h2>Is financial pressure showing up in your business?</h2>
+        <p>Financial wellbeing is no longer only a personal issue. For many organisations, it can affect focus, confidence, engagement, retention and overall performance.</p>
+        <p>This diagnostic helps you take a high-level view of what may already be happening across your workforce, and whether a more structured response could be useful.</p>
+
+        <form id="wellbeingQuiz" class="quiz-form">
+          <fieldset class="question">
+            <legend>1. How confident are you that employees understand the benefits already available to them?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q1" value="0"> Very confident, benefits are well communicated and understood</label>
+              <label class="option"><input type="radio" name="q1" value="1"> Somewhat confident, but engagement could be better</label>
+              <label class="option"><input type="radio" name="q1" value="2"> Not confident, benefits are in place but not well understood</label>
+              <label class="option"><input type="radio" name="q1" value="3"> We do not currently have a clear benefits communication process</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question">
+            <legend>2. How visible is financial stress within your workforce?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q2" value="0"> Rarely visible</label>
+              <label class="option"><input type="radio" name="q2" value="1"> Occasionally visible through individual conversations</label>
+              <label class="option"><input type="radio" name="q2" value="2"> Increasingly visible through absence, distraction or requests for support</label>
+              <label class="option"><input type="radio" name="q2" value="3"> A regular concern for leadership, HR or line managers</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question">
+            <legend>3. How often do employees ask for help with pensions, savings, debt, protection or wider money matters?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q3" value="0"> Rarely</label>
+              <label class="option"><input type="radio" name="q3" value="1"> Occasionally</label>
+              <label class="option"><input type="radio" name="q3" value="2"> Frequently enough to suggest a wider need</label>
+              <label class="option"><input type="radio" name="q3" value="3"> We know there is demand, but do not have a clear route for support</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question">
+            <legend>4. When did you last review your workplace pension and employee benefits?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q4" value="0"> Within the last 12 months</label>
+              <label class="option"><input type="radio" name="q4" value="1"> Within the last 1 to 3 years</label>
+              <label class="option"><input type="radio" name="q4" value="2"> More than 3 years ago</label>
+              <label class="option"><input type="radio" name="q4" value="3"> We are not sure when they were last reviewed properly</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question">
+            <legend>5. How well does your current wellbeing approach connect with retention, engagement and performance?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q5" value="0"> Very well, it is part of our people strategy</label>
+              <label class="option"><input type="radio" name="q5" value="1"> Partly, but it could be more structured</label>
+              <label class="option"><input type="radio" name="q5" value="2"> Not clearly, it is more reactive than strategic</label>
+              <label class="option"><input type="radio" name="q5" value="3"> We do not currently have a joined-up approach</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question">
+            <legend>6. How easy would it be for your organisation to introduce practical financial wellbeing support?</legend>
+            <div class="options">
+              <label class="option"><input type="radio" name="q6" value="0"> Easy, we have resource and a clear route to communicate</label>
+              <label class="option"><input type="radio" name="q6" value="1"> Possible, but we would need guidance</label>
+              <label class="option"><input type="radio" name="q6" value="2"> Difficult, because time and internal capacity are limited</label>
+              <label class="option"><input type="radio" name="q6" value="3"> Very difficult without external support and coordination</label>
+            </div>
+          </fieldset>
+
+          <div id="errorMessage" class="error-message">Please answer all six questions before viewing your result.</div>
+
+          <div class="button-row">
+            <button type="button" class="btn btn-primary" onclick="calculateResult()">View my result</button>
+            <button type="reset" class="btn btn-secondary" onclick="resetResult()">Reset</button>
+          </div>
+        </form>
+
+        <section id="resultBox" class="result-box" aria-live="polite">
+          <div id="scorePill" class="score-pill"></div>
+          <h2 id="resultTitle" class="result-title"></h2>
+          <p id="resultText"></p>
+          <p id="resultAction"></p>
+
+          <div class="lead-form">
+            <h3>Would it be useful to walk through this?</h3>
+            <p>Aetas in the Workplace can help you review what is already in place, identify any gaps, and consider what a proportionate response could look like.</p>
+
+            <!-- Replace this form action with your Go High Level form endpoint, webhook URL, or embedded GHL form. -->
+            <form id="contactForm" action="#" method="post">
+              <div class="field-grid">
+                <div>
+                  <label class="field-label" for="name">Name</label>
+                  <input type="text" id="name" name="name" autocomplete="name" />
+                </div>
+                <div>
+                  <label class="field-label" for="company">Company</label>
+                  <input type="text" id="company" name="company" autocomplete="organization" />
+                </div>
+                <div>
+                  <label class="field-label" for="email">Email</label>
+                  <input type="email" id="email" name="email" autocomplete="email" />
+                </div>
+                <div>
+                  <label class="field-label" for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" />
+                </div>
+                <div class="full-width">
+                  <label class="field-label" for="message">Anything you would like to add?</label>
+                  <textarea id="message" name="message"></textarea>
+                </div>
+                <input type="hidden" id="quizScore" name="quiz_score" />
+                <input type="hidden" id="riskProfile" name="risk_profile" />
+              </div>
+
+              <div class="button-row">
+                <button type="submit" class="btn btn-primary">Request a workplace financial wellbeing consultation</button>
+              </div>
+              <p class="small-note">By submitting your details, you are asking Aetas in the Workplace to contact you about your result.</p>
+            </form>
+          </div>
+        </section>
+      </div>
+
+      <aside class="card sidebar-card">
+        <h3>What this diagnostic is designed to reveal</h3>
+        <p>It gives leadership teams a simple way to understand whether employee financial pressure may be creating hidden organisational risk.</p>
+
+        <div class="stat-box">
+          <strong>The aim is clarity.</strong><br />
+          Not every organisation needs a complex programme, but most benefit from understanding whether current support is fit for purpose.
+        </div>
+
+        <h3>What happens next?</h3>
+        <ol class="process-list">
+          <li><div><strong>Complete the diagnostic</strong><br />Answer six high-level questions.</div></li>
+          <li><div><strong>Review your result</strong><br />Receive a clear workplace financial pressure profile.</div></li>
+          <li><div><strong>Explore the gaps</strong><br />Book a consultation to understand what this means in practice.</div></li>
+        </ol>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    function calculateResult() {
+      const totalQuestions = 6;
+      let score = 0;
+      let answered = 0;
+
+      for (let i = 1; i <= totalQuestions; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected) {
+          score += Number(selected.value);
+          answered++;
+        }
+      }
+
+      const errorMessage = document.getElementById('errorMessage');
+      const resultBox = document.getElementById('resultBox');
+      const scorePill = document.getElementById('scorePill');
+      const resultTitle = document.getElementById('resultTitle');
+      const resultText = document.getElementById('resultText');
+      const resultAction = document.getElementById('resultAction');
+      const quizScore = document.getElementById('quizScore');
+      const riskProfile = document.getElementById('riskProfile');
+
+      if (answered < totalQuestions) {
+        errorMessage.classList.add('active');
+        resultBox.classList.remove('active');
+        return;
+      }
+
+      errorMessage.classList.remove('active');
+
+      let profile = '';
+      let title = '';
+      let text = '';
+      let action = '';
+
+      if (score <= 4) {
+        profile = 'Low current risk';
+        title = 'Low current financial wellbeing risk';
+        text = 'Your responses suggest that financial pressure is not currently creating a major visible issue across your organisation. The priority is likely to be maintaining communication, reviewing benefits regularly, and making sure employees know where to turn when they need support.';
+        action = 'A light-touch review may still be useful to confirm whether your current arrangements remain suitable as your organisation changes.';
+      } else if (score <= 8) {
+        profile = 'Emerging pressure';
+        title = 'Emerging financial pressure risk';
+        text = 'Your responses suggest early signs that employee financial pressure may be affecting understanding, engagement or confidence. This is often the stage where practical education, clearer communication and a simple benefits review can make a meaningful difference.';
+        action = 'A structured consultation can help identify the most relevant and proportionate next steps.';
+      } else if (score <= 13) {
+        profile = 'Material pressure';
+        title = 'Material financial wellbeing risk';
+        text = 'Your responses suggest that financial pressure may already be showing up across your workforce. This can affect focus, morale, retention and the value employees get from existing benefits.';
+        action = 'It would be sensible to review what is currently in place and consider a more joined-up approach to employee benefits and financial wellbeing support.';
+      } else {
+        profile = 'High organisational risk';
+        title = 'High workplace financial pressure risk';
+        text = 'Your responses suggest that financial pressure may be creating a clear organisational risk. This may be showing up through employee stress, poor benefits engagement, pressure on managers or a lack of confidence around financial decisions.';
+        action = 'A diagnostic consultation would help identify the key gaps and shape a practical plan that is proportionate for your organisation.';
+      }
+
+      scorePill.textContent = `Score: ${score} / 18 | ${profile}`;
+      resultTitle.textContent = title;
+      resultText.textContent = text;
+      resultAction.textContent = action;
+      quizScore.value = score;
+      riskProfile.value = profile;
+
+      resultBox.classList.add('active');
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function resetResult() {
+      document.getElementById('resultBox').classList.remove('active');
+      document.getElementById('errorMessage').classList.remove('active');
+      document.getElementById('quizScore').value = '';
+      document.getElementById('riskProfile').value = '';
+    }
+  </script>
+</body>
+</html>
