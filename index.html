@@ -503,8 +503,24 @@
       resultText.textContent = text;
       resultAction.textContent = action;
 
+      updateGHLForm(score, profile);
+
       resultBox.classList.add('active');
       resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function updateGHLForm(score, profile) {
+      const iframe = document.getElementById('inline-9OWpl3cIeEH2rFzQyDih');
+      if (!iframe) return;
+
+      const baseUrl = 'https://links.aetas-partners.com/widget/form/9OWpl3cIeEH2rFzQyDih';
+      const params = new URLSearchParams({
+        quiz_score: `${score} / 18`,
+        risk_profile: profile,
+        diagnostic_source: 'Financial Wellbeing Test'
+      });
+
+      iframe.src = `${baseUrl}?${params.toString()}`;
     }
 
     function resetResult() {
