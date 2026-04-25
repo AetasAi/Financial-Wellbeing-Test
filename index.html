@@ -391,35 +391,31 @@
         </form>
 
         <section id="resultBox" class="result-box" aria-live="polite">
-          <div id="scorePill" class="score-pill"></div>
-          <h2 id="resultTitle" class="result-title"></h2>
-          <p id="resultText"></p>
-          <p id="resultAction"></p>
 
-          <div class="lead-form">
-            <h3>Walk through what this looks like in your organisation</h3>
-            <p>Aetas in the Workplace can help you review what is already in place, identify any gaps, and consider what a proportionate response could look like.</p>
-            <p><strong>Your result has been prepared. Enter your details below to receive your outcome and follow-up.</strong></p>
-            <p class="small-note">No obligation. No preparation required. Designed to give you clarity.</p>
+          <div id="preResult">
+            <h2>Your result is ready</h2>
+            <p>Enter your details below to view your result and receive your personalised insight.</p>
+
+            <p class="small-note">
+              Most organisations at this stage choose to take a closer look, not because something is wrong,
+              but to understand what is actually happening beneath the surface.
+            </p>
 
             <iframe 
               src="https://links.aetas-partners.com/widget/form/9OWpl3cIeEH2rFzQyDih"
               class="ghl-form-frame"
-              id="inline-9OWpl3cIeEH2rFzQyDih" 
-              data-layout="{'id':'INLINE'}"
-              data-trigger-type="alwaysShow"
-              data-trigger-value=""
-              data-activation-type="alwaysActivated"
-              data-activation-value=""
-              data-deactivation-type="neverDeactivate"
-              data-deactivation-value=""
-              data-form-name="Financial Wellbeing Test"
-              data-height="1214"
-              data-layout-iframe-id="inline-9OWpl3cIeEH2rFzQyDih"
-              data-form-id="9OWpl3cIeEH2rFzQyDih"
+              id="inline-9OWpl3cIeEH2rFzQyDih"
               title="Financial Wellbeing Test">
             </iframe>
           </div>
+
+          <div id="finalResult" style="display:none; margin-top:30px;">
+            <div id="scorePill" class="score-pill"></div>
+            <h2 id="resultTitle" class="result-title"></h2>
+            <p id="resultText"></p>
+            <p id="resultAction"></p>
+          </div>
+
         </section>
       </div>
 
@@ -506,6 +502,10 @@
       updateGHLForm(score, profile);
 
       resultBox.classList.add('active');
+
+      setTimeout(() => {
+        document.getElementById('finalResult').style.display = 'block';
+      }, 4000);
       resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
