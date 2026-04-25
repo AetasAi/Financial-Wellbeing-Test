@@ -407,6 +407,10 @@
               id="inline-9OWpl3cIeEH2rFzQyDih"
               title="Financial Wellbeing Test">
             </iframe>
+
+            <div class="button-row">
+              <button type="button" class="btn btn-primary" id="showFinalResultButton">I have submitted my details, show my result</button>
+            </div>
           </div>
 
           <div id="finalResult" style="display:none; margin-top:30px;">
@@ -503,9 +507,6 @@
 
       resultBox.classList.add('active');
 
-      setTimeout(() => {
-        document.getElementById('finalResult').style.display = 'block';
-      }, 4000);
       resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
@@ -534,6 +535,11 @@
       document.getElementById('resetButton').addEventListener('click', function(event) {
         event.preventDefault();
         resetResult();
+      });
+
+      document.getElementById('showFinalResultButton').addEventListener('click', function() {
+        document.getElementById('finalResult').style.display = 'block';
+        document.getElementById('finalResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
   </script>
