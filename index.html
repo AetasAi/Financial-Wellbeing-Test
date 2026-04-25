@@ -456,41 +456,31 @@
             <p>Aetas in the Workplace can help you review what is already in place, identify any gaps, and consider what a proportionate response could look like.</p>
             <p class="small-note">No obligation. No preparation required. Designed to give you clarity.</p>
 
-            <form id="contactForm">
-              <div class="field-grid">
-                <div>
-                  <label class="field-label" for="name">Name</label>
-                  <input type="text" id="name" name="name" autocomplete="name" required />
-                </div>
-                <div>
-                  <label class="field-label" for="company">Company</label>
-                  <input type="text" id="company" name="company" autocomplete="organization" />
-                </div>
-                <div>
-                  <label class="field-label" for="email">Email</label>
-                  <input type="email" id="email" name="email" autocomplete="email" required />
-                </div>
-                <div>
-                  <label class="field-label" for="phone">Phone</label>
-                  <input type="tel" id="phone" name="phone" autocomplete="tel" />
-                </div>
-                <div class="full-width">
-                  <label class="field-label" for="message">Anything you would like to add?</label>
-                  <textarea id="message" name="message"></textarea>
-                </div>
+            <!-- GHL Embedded Form -->
+            <p><strong>Your result has been prepared. Enter your details below to receive your outcome and follow-up.</strong></p>
+            <p class="small-note">No obligation. No preparation required. Designed to give you clarity.</p>
 
-                <input type="hidden" id="quizScore" name="quiz_score" />
-                <input type="hidden" id="riskProfile" name="risk_profile" />
-              </div>
+            <div id="formWrapper">
+              <iframe 
+                src="https://links.aetas-partners.com/widget/form/9OWpl3cIeEH2rFzQyDih"
+                style="width:100%;height:1214px;border:none;border-radius:3px"
+                id="inline-9OWpl3cIeEH2rFzQyDih" 
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Financial Wellbeing Test"
+                data-height="1214"
+                data-layout-iframe-id="inline-9OWpl3cIeEH2rFzQyDih"
+                data-form-id="9OWpl3cIeEH2rFzQyDih"
+                title="Financial Wellbeing Test">
+              </iframe>
+            </div>
 
-              <div id="formSuccess" class="success-message">Thank you. Your result has been submitted successfully.</div>
-              <div id="formError" class="error-message">There was an issue submitting your form. Please try again.</div>
-
-              <div class="button-row">
-                <button id="submitButton" type="submit" class="btn btn-primary">Request a workplace financial wellbeing consultation</button>
-              </div>
-              <p class="small-note">By submitting your details, you are asking Aetas in the Workplace to contact you about your result.</p>
-            </form>
+            <script src="https://links.aetas-partners.com/js/form_embed.js"></script>
           </div>
         </section>
       </div>
