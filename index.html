@@ -16,16 +16,12 @@
       --aetas-text: #1f2933;
       --aetas-muted: #5f6b7a;
       --white: #ffffff;
-      --success: #edf8f0;
-      --success-border: #9bd3aa;
       --error: #fff1f1;
       --error-border: #f2b6b8;
       --error-text: #9f1d20;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -109,18 +105,14 @@
       line-height: 1.25;
     }
 
-    .quiz-form {
-      margin-top: 12px;
-    }
+    .quiz-form { margin-top: 12px; }
 
     .question {
       padding: 22px 0;
       border-bottom: 1px solid var(--aetas-border);
     }
 
-    .question:last-of-type {
-      border-bottom: none;
-    }
+    .question:last-of-type { border-bottom: none; }
 
     .question legend {
       font-weight: 700;
@@ -194,9 +186,7 @@
       color: var(--white);
     }
 
-    .btn-secondary:hover {
-      background: var(--aetas-blue);
-    }
+    .btn-secondary:hover { background: var(--aetas-blue); }
 
     .small-note {
       color: var(--aetas-muted);
@@ -213,9 +203,7 @@
       background: #fbfcff;
     }
 
-    .result-box.active {
-      display: block;
-    }
+    .result-box.active { display: block; }
 
     .score-pill {
       display: inline-block;
@@ -240,46 +228,12 @@
       border-top: 1px solid var(--aetas-border);
     }
 
-    .field-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    label.field-label {
-      display: block;
-      font-weight: 700;
-      color: var(--aetas-navy);
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    input[type="text"], input[type="email"], input[type="tel"], textarea {
-      width: 100%;
-      border: 1px solid var(--aetas-border);
-      border-radius: 12px;
-      padding: 12px 13px;
-      font-family: inherit;
-      font-size: 15px;
-    }
-
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
-    .full-width {
-      grid-column: 1 / -1;
-    }
-
     .sidebar-card {
       position: sticky;
       top: 22px;
     }
 
-    .sidebar-card p {
-      color: var(--aetas-muted);
-    }
+    .sidebar-card p { color: var(--aetas-muted); }
 
     .stat-box {
       border-left: 4px solid var(--aetas-gold);
@@ -318,42 +272,33 @@
       font-size: 14px;
     }
 
-    .error-message, .success-message {
+    .error-message {
       display: none;
+      color: var(--error-text);
+      background: var(--error);
+      border: 1px solid var(--error-border);
       border-radius: 12px;
       padding: 12px 14px;
       margin-top: 16px;
       font-weight: 700;
     }
 
-    .error-message {
-      color: var(--error-text);
-      background: var(--error);
-      border: 1px solid var(--error-border);
-    }
+    .error-message.active { display: block; }
 
-    .success-message {
-      color: #185b2b;
-      background: var(--success);
-      border: 1px solid var(--success-border);
-    }
-
-    .error-message.active, .success-message.active {
-      display: block;
+    .ghl-form-frame {
+      width: 100%;
+      height: 1214px;
+      border: none;
+      border-radius: 3px;
     }
 
     @media (max-width: 860px) {
-      .content-grid, .hero-points, .field-grid {
+      .content-grid, .hero-points {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        padding: 34px 24px;
-      }
-
-      .sidebar-card {
-        position: static;
-      }
+      .hero { padding: 34px 24px; }
+      .sidebar-card { position: static; }
     }
   </style>
 </head>
@@ -440,8 +385,8 @@
           <div id="errorMessage" class="error-message">Please answer all six questions before viewing your result.</div>
 
           <div class="button-row">
-            <button type="button" class="btn btn-primary" onclick="calculateResult()">View my result</button>
-            <button type="reset" class="btn btn-secondary" onclick="resetResult()">Reset</button>
+            <button type="button" class="btn btn-primary" id="viewResultButton">View my result</button>
+            <button type="reset" class="btn btn-secondary" id="resetButton">Reset</button>
           </div>
         </form>
 
@@ -454,33 +399,26 @@
           <div class="lead-form">
             <h3>Walk through what this looks like in your organisation</h3>
             <p>Aetas in the Workplace can help you review what is already in place, identify any gaps, and consider what a proportionate response could look like.</p>
-            <p class="small-note">No obligation. No preparation required. Designed to give you clarity.</p>
-
-            <!-- GHL Embedded Form -->
             <p><strong>Your result has been prepared. Enter your details below to receive your outcome and follow-up.</strong></p>
             <p class="small-note">No obligation. No preparation required. Designed to give you clarity.</p>
 
-            <div id="formWrapper">
-              <iframe 
-                src="https://links.aetas-partners.com/widget/form/9OWpl3cIeEH2rFzQyDih"
-                style="width:100%;height:1214px;border:none;border-radius:3px"
-                id="inline-9OWpl3cIeEH2rFzQyDih" 
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="Financial Wellbeing Test"
-                data-height="1214"
-                data-layout-iframe-id="inline-9OWpl3cIeEH2rFzQyDih"
-                data-form-id="9OWpl3cIeEH2rFzQyDih"
-                title="Financial Wellbeing Test">
-              </iframe>
-            </div>
-
-            <script src="https://links.aetas-partners.com/js/form_embed.js"></script>
+            <iframe 
+              src="https://links.aetas-partners.com/widget/form/9OWpl3cIeEH2rFzQyDih"
+              class="ghl-form-frame"
+              id="inline-9OWpl3cIeEH2rFzQyDih" 
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Financial Wellbeing Test"
+              data-height="1214"
+              data-layout-iframe-id="inline-9OWpl3cIeEH2rFzQyDih"
+              data-form-id="9OWpl3cIeEH2rFzQyDih"
+              title="Financial Wellbeing Test">
+            </iframe>
           </div>
         </section>
       </div>
@@ -505,7 +443,6 @@
   </main>
 
   <script>
-
     function calculateResult() {
       const totalQuestions = 6;
       let score = 0;
@@ -525,8 +462,6 @@
       const resultTitle = document.getElementById('resultTitle');
       const resultText = document.getElementById('resultText');
       const resultAction = document.getElementById('resultAction');
-      const quizScore = document.getElementById('quizScore');
-      const riskProfile = document.getElementById('riskProfile');
 
       if (answered < totalQuestions) {
         errorMessage.classList.add('active');
@@ -567,8 +502,6 @@
       resultTitle.textContent = title;
       resultText.textContent = text;
       resultAction.textContent = action;
-      quizScore.value = score;
-      riskProfile.value = profile;
 
       resultBox.classList.add('active');
       resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -577,11 +510,17 @@
     function resetResult() {
       document.getElementById('resultBox').classList.remove('active');
       document.getElementById('errorMessage').classList.remove('active');
-      document.getElementById('formSuccess').classList.remove('active');
-      document.getElementById('formError').classList.remove('active');
-      document.getElementById('quizScore').value = '';
-      document.getElementById('riskProfile').value = '';
+      document.getElementById('wellbeingQuiz').reset();
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('viewResultButton').addEventListener('click', calculateResult);
+      document.getElementById('resetButton').addEventListener('click', function(event) {
+        event.preventDefault();
+        resetResult();
+      });
+    });
   </script>
+  <script src="https://links.aetas-partners.com/js/form_embed.js"></script>
 </body>
 </html>
