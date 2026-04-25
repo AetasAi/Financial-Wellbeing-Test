@@ -222,12 +222,6 @@
       font-size: 25px;
     }
 
-    .lead-form {
-      margin-top: 22px;
-      padding-top: 22px;
-      border-top: 1px solid var(--aetas-border);
-    }
-
     .sidebar-card {
       position: sticky;
       top: 22px;
@@ -302,6 +296,7 @@
     }
   </style>
 </head>
+
 <body>
   <main class="page-wrap">
     <section class="hero">
@@ -458,6 +453,7 @@
 
       const errorMessage = document.getElementById('errorMessage');
       const resultBox = document.getElementById('resultBox');
+      const finalResult = document.getElementById('finalResult');
       const scorePill = document.getElementById('scorePill');
       const resultTitle = document.getElementById('resultTitle');
       const resultText = document.getElementById('resultText');
@@ -466,10 +462,12 @@
       if (answered < totalQuestions) {
         errorMessage.classList.add('active');
         resultBox.classList.remove('active');
+        finalResult.style.display = 'none';
         return;
       }
 
       errorMessage.classList.remove('active');
+      finalResult.style.display = 'none';
 
       let profile = '';
       let title = '';
@@ -506,7 +504,6 @@
       updateGHLForm(score, profile);
 
       resultBox.classList.add('active');
-
       resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
@@ -515,9 +512,10 @@
       if (!iframe) return;
 
       const baseUrl = 'https://links.aetas-partners.com/widget/form/9OWpl3cIeEH2rFzQyDih';
+
       const params = new URLSearchParams({
-        quiz_score: `${score} / 18`,
-        risk_profile: profile,
+        quiz_score: String(score) + ' / 18',
+        risk_profile: String(profile),
         diagnostic_source: 'Financial Wellbeing Test'
       });
 
@@ -527,11 +525,13 @@
     function resetResult() {
       document.getElementById('resultBox').classList.remove('active');
       document.getElementById('errorMessage').classList.remove('active');
+      document.getElementById('finalResult').style.display = 'none';
       document.getElementById('wellbeingQuiz').reset();
     }
 
     document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('viewResultButton').addEventListener('click', calculateResult);
+
       document.getElementById('resetButton').addEventListener('click', function(event) {
         event.preventDefault();
         resetResult();
@@ -543,6 +543,7 @@
       });
     });
   </script>
+
   <script src="https://links.aetas-partners.com/js/form_embed.js"></script>
 </body>
 </html>
