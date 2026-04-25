@@ -451,7 +451,7 @@
             <p>Aetas in the Workplace can help you review what is already in place, identify any gaps, and consider what a proportionate response could look like.</p>
 
             <!-- Replace this form action with your Go High Level form endpoint, webhook URL, or embedded GHL form. -->
-            <form id="contactForm" action="YOUR_GHL_WEBHOOK_URL" method="post">
+            <form id="contactForm">
               <div class="field-grid">
                 <div>
                   <label class="field-label" for="name">Name</label>
@@ -516,6 +516,15 @@
         if (selected) {
           score += Number(selected.value);
           answered++;
+         <script>
+  function calculateResult() {
+    ...
+  }
+
+  function resetResult() {
+    ...
+  }
+</script> 
         }
       }
 
