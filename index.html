@@ -505,8 +505,6 @@
   </main>
 
   <script>
-    // IMPORTANT: Replace the URL below with your Go High Level inbound webhook URL.
-    const GHL_WEBHOOK_URL = "PASTE_YOUR_GHL_WEBHOOK_URL_HERE";
 
     function calculateResult() {
       const totalQuestions = 6;
@@ -584,63 +582,6 @@
       document.getElementById('quizScore').value = '';
       document.getElementById('riskProfile').value = '';
     }
-
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-
-      const successMessage = document.getElementById('formSuccess');
-      const errorMessage = document.getElementById('formError');
-      const submitButton = document.getElementById('submitButton');
-
-      successMessage.classList.remove('active');
-      errorMessage.classList.remove('active');
-
-      if (!GHL_WEBHOOK_URL || GHL_WEBHOOK_URL === 'PASTE_YOUR_GHL_WEBHOOK_URL_HERE') {
-        errorMessage.textContent = 'Webhook URL has not been added yet.';
-        errorMessage.classList.add('active');
-        return;
-      }
-
-      const formData = {
-        name: document.getElementById('name').value,
-        company: document.getElementById('company').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        message: document.getElementById('message').value,
-        quiz_score: document.getElementById('quizScore').value,
-        risk_profile: document.getElementById('riskProfile').value,
-        source: 'Financial Wellbeing Test',
-        page_url: window.location.href,
-        submitted_at: new Date().toISOString()
-      };
-
-      submitButton.disabled = true;
-      submitButton.textContent = 'Submitting...';
-
-      try {
-        const response = await fetch(GHL_WEBHOOK_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        });
-
-        if (!response.ok) {
-          throw new Error('Webhook submission failed');
-        }
-
-        successMessage.textContent = 'Thank you. Your result has been submitted successfully.';
-        successMessage.classList.add('active');
-        document.getElementById('contactForm').reset();
-      } catch (error) {
-        errorMessage.textContent = 'There was an issue submitting your form. Please try again.';
-        errorMessage.classList.add('active');
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Request a workplace financial wellbeing consultation';
-      }
-    });
   </script>
 </body>
 </html>
